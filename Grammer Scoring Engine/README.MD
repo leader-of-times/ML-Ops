@@ -61,3 +61,43 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
+
+## 📦 Usage
+
+You can run inference by passing base64-encoded or JSON-encoded audio data (as an array of float32 samples at 16kHz). The pipeline will handle transcription, correction, and scoring.
+
+---
+
+## 📊 Output
+
+The engine returns a JSON object containing:
+
+- Original transcription  
+- Corrected text  
+- Individual metric scores  
+- Final grammar score (0–10)  
+- Timestamp  
+
+---
+
+## 🧪 Testing & Validation
+
+To test the engine, pass in sample audio arrays and verify:
+
+- Accurate transcription  
+- Logical and grammatically correct corrections  
+- Reasonable grammar scores based on intentional input errors  
+
+---
+
+## 🛠 Troubleshooting
+
+- Ensure the required models (`en_core_web_sm`, `whisper-small`, and T5) are downloaded.  
+- If using a GPU, make sure `torch.cuda` is available and correctly configured.  
+- Check for missing dependencies in your environment.  
+
+---
+
+## 🧾 License
+
+This project is open-source and available under the MIT License.
