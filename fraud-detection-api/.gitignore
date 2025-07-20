@@ -1,0 +1,10 @@
+# Ignore Python's cache
+__pycache__/
+*.pyc
+
+# Ignore MLflow's local runs
+mlflow_runs/
+
+# Ignore large data and model files
+*.csv
+*.joblib
