@@ -1,0 +1,35 @@
+
+name: CI-CD Pipeline for Fraud Detection API
+
+on:
+  push:
+    # This workflow will only run if changes are pushed inside the fraud-detection-api folder
+    paths:
+      - 'fraud-detection-api/**'
+    branches:
+      - 'main'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest # The job will run on a virtual machine hosted by GitHub
+
+    steps:
+      # 1. Checks out your repository's code so the job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Logs in to Docker Hub using the secrets you provided
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Builds the Docker image from your sub-directory and pushes it to Docker Hub
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          # Set the build context to our project's sub-directory
+          context: ./fraud-detection-api
+          push: true
+          tags: knnoufal/fraud-api:latest # Replace with your Docker Hub repo
