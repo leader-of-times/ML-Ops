@@ -1,3 +1,4 @@
+# v1.0.0 of the Fraud Detection API
 import pandas as pd
 import joblib
 from fastapi import FastAPI
